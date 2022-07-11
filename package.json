@@ -4,7 +4,6 @@
   "description": "ethio developers site",
   "main": "index.js",
   "author": "eyobe and natnael-oqp",
-
   "scripts": {
     "start": "node",
     "dev": "nodemon"
@@ -14,6 +13,7 @@
     "apollo-server": "^3.9.0",
     "dotenv": "^16.0.1",
     "graphql": "^16.5.0",
+    "mongoose": "^6.4.4",
     "nodemon": "^2.0.19"
   }
 }
