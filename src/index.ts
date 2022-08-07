@@ -1,19 +1,14 @@
-import { ApolloServer } from 'apollo-server-express';
-import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-import express from 'express';
-import http from 'http';
-import  'dotenv/config'
+import { ApolloServer } from 'apollo-server-express'
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core'
+import express from 'express'
+import http from 'http'
+import 'dotenv/config'
 
 // import graphql schema and resolver
-import resolvers from "./graphql/resolvers/index"
-import typeDefs from "./graphql/schema/index"
-// import mongodb connection 
+import resolvers from './graphql/resolvers/index'
+import typeDefs from './graphql/schema/index'
+// import mongodb connection
 import dbConnection from './util/dbConnection'
-
-
-dbConnection()
-
-
 
 async function startApolloServer(typeDefs: any, resolvers: any) {
     const app = express()
@@ -33,5 +28,6 @@ async function startApolloServer(typeDefs: any, resolvers: any) {
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
 }
 
-startApolloServer(typeDefs, resolvers)
-
+dbConnection()
+    .then(() => startApolloServer(typeDefs, resolvers))
+    .catch((err) => console.log(err))
